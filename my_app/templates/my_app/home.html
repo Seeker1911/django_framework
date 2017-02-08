@@ -1,0 +1,55 @@
+{% extends 'my_app/base.html' %}
+{% load static %}
+{% block content %}
+    <div class="">
+        <form class="" action="" method="post" >
+            <input id="tokenfield-typeahead" class="typeahead" type="text" name="question" value="">
+            <button type="submit" name="button">button</button>
+        </form></br>
+
+        <div class="">
+            <!-- {% for i in entry %}
+                <p>{{i.question_text}}</p>
+            {% endfor %} -->
+        </div>
+    </div>
+
+{% block js %}
+<script type="text/javascript">
+    $(document).ready(function (){
+        console.log("ready");
+    });
+    // Instantiate the Bloodhound suggestion engine
+    var movies = new Bloodhound({
+        remote: {
+            wildcard: '%QUERY',
+            url: 'http://api.themoviedb.org/3/search/movie?query=%QUERY&api_key=f22e6ce68f5e5002e71c20bcba477e7d',
+            transform: function(response) {
+                // Map the remote source JSON array to a JavaScript object array
+                return $.map(response.results, function(movie) {
+                    console.log(response.results);
+                    return {
+                        value: movie.title
+                    };
+                });
+            }
+        },
+      datumTokenizer: function(datum) {
+        return Bloodhound.tokenizers.whitespace(datum.value);
+      },
+      queryTokenizer: Bloodhound.tokenizers.whitespace,
+  });
+    movies.initialize();
+
+    $('#tokenfield-typeahead').tokenfield({
+      typeahead: [null, { source: movies.ttAdapter() }]
+    });
+
+//<div class="tt-suggestion tt-selectable">{"_query":"star","value":"Star Wars"}</div>
+// childNodes >
+// data "{"_query":"star","value":"Star Wars"}"
+
+</script>
+
+{% endblock %}
+{% endblock content %}

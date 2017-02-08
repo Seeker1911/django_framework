@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% load static %}
+        <link rel="stylesheet" type="text/css" href="{% static 'my_app/bower_components/bootstrap/dist/css/bootstrap.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'my_app/bower_components/bootstrap-tokenfield/dist/css/bootstrap-tokenfield.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'my_app/css/typeahead.css' %}">
+        <script src="{% static 'my_app/bower_components/jquery/dist/jquery.js' %}" charset="utf-8"> </script>
+        <script src="{% static 'my_app/js/typeahead.js/typeahead.bundle.js' %}" charset="utf-8"> </script>
+        <script src="{% static 'my_app/bower_components/bootstrap-tokenfield/dist/bootstrap-tokenfield.js' %}" charset="utf-8"> </script>
+
+        <meta charset="utf-8">
+        <title>base</title>
+    </head>
+    <body>
+        a header
+
+ {% block content %}
+ {% endblock content %}
+
+    </body>
+</html>
